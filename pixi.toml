@@ -39,6 +39,7 @@ HYDRA_FULL_ERROR = "1"
 
 [tasks]
 visualize = "python src/visualize_smpl.py"
+skeleton = "python src/visualize_dataset.py"
 generate = "python src/generate.py compnode=cpu"
 train = "python src/train.py compnode=cpu"
 evaluate = "python src/evaluate.py compnode=cpu"

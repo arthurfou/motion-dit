@@ -5,6 +5,7 @@ __pycache__/
 .ipynb_checkpoints/
 # data / outputs
 humanml3d-data
+dataset/
 results/
 metrics/
 outputs/

@@ -108,8 +108,8 @@ class CrossAttentionSABlock(nn.Module):
         # Complete this part for `Code 5`
         normed_tokens = self.ca_ln(tokens)
         ca_output = self.ca(
-            # ...,
-            # ...,
+            normed_tokens,
+            cond,
             attention_mask=cond_attention_mask,
         )
         # ----------------------------------------------------------------------------- #
@@ -237,13 +237,13 @@ class CrossAttentionDiT(BaseDiT):
         cond_emb = self.cond_projection(cond)
         # ----------------------------------------------------------------------------- #
         # Complete this part for `Code 5`
-        # cond_emb = ...
+        cond_emb = torch.cat([t.unsqueeze(1), cond_emb], dim=1)  # prepend time token
         # ----------------------------------------------------------------------------- #
         cond_emb = self.cond_positional_embedding(cond_emb)
         # ----------------------------------------------------------------------------- #
         # Complete this part for `Code 5`
-        # ... self.cond_sa
-        #     cond_emb = ...
+        for block in self.cond_sa:
+            cond_emb = block(cond_emb)
         # ----------------------------------------------------------------------------- #
         return cond_emb
 

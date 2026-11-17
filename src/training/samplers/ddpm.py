@@ -59,9 +59,12 @@ class DDPMSampler(nn.Module):
             # x0 prediction (g --> \bar{alpha})
             # ------------------------------------------------------------------------- #
             # Complete this part for `Code 7`
-            # x_mean = ...
-            # var_t = ...
-            # x_next = ...
+            x_mean = (
+                alpha_cur.sqrt() * (1 - g_next) * x_cur
+                + g_next.sqrt() * (1 - alpha_cur) * x0
+            ) / (1 - g_cur)
+            var_t = (1 - alpha_cur) * (1 - g_next) / (1 - g_cur)
+            x_next = x_mean + var_t.sqrt() * randn_like(x_cur)
             # ------------------------------------------------------------------------- #
 
             x_cur = x_next
