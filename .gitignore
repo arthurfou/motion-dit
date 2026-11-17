@@ -1,0 +1,15 @@
+# pixi
+.pixi/
+*.egg-info/
+__pycache__/
+.ipynb_checkpoints/
+# data / outputs
+humanml3d-data
+results/
+metrics/
+outputs/
+wandb/
+lightning_logs/
+*.ckpt
+*.mp4
+.DS_Store

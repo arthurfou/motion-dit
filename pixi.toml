@@ -1,0 +1,45 @@
+[workspace]
+name = "motion-dit"
+description = "Text-to-motion generation with diffusion transformers (CSC_52002 lab 5b)"
+channels = ["conda-forge"]
+platforms = ["linux-64"]
+
+[dependencies]
+python = "3.11.*"
+pytorch = ">=2.3"
+lightning = "*"
+torchmetrics = "*"
+hydra-core = "*"
+omegaconf = "*"
+einops = "*"
+numpy = "*"
+scipy = "*"
+pandas = "*"
+tqdm = "*"
+trimesh = "*"
+pyrender = "*"
+pyopengl = "*"
+libegl = "*"
+mesalib = "*"
+imageio = "*"
+imageio-ffmpeg = "*"
+ffmpeg = "*"
+moviepy = "*"
+ipykernel = "*"
+jupyterlab = "*"
+
+[pypi-dependencies]
+smplx = "*"
+torchtyping = "*"
+ema-pytorch = "*"
+
+[activation.env]
+PYTHONPATH = "$PIXI_PROJECT_ROOT"
+HYDRA_FULL_ERROR = "1"
+
+[tasks]
+visualize = "python src/visualize_smpl.py"
+generate = "python src/generate.py compnode=cpu"
+train = "python src/train.py compnode=cpu"
+evaluate = "python src/evaluate.py compnode=cpu"
+lab = "jupyter lab notebooks"
